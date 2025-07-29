@@ -41,7 +41,7 @@
                 <input type="password" name="password" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="mb-3">
-                Já possui uma conta? <a href="{{ route('auth.index') }}">Fazer login</a>
+                Já possui uma conta? <a href="{{ route('login') }}">Fazer login</a>
             </div>
             <button type="submit" class="btn btn-primary">Criar</button>
         </form>
