@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->set('status', ['d', 'p'])->default('p');
             $table->set('priority', ['a', 'm', 'b'])->default('m');
-            $table->foreignId('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
