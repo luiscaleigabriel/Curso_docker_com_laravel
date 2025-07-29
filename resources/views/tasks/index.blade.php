@@ -5,7 +5,7 @@
 
     <div class="container mt-4">
         <h2 class="mb-4">Minhas Tarefas</h2>
-        <a href="#" class="btn btn-primary mb-2">Criar Tarefa</a>
+        <a href="{{ route('task.create') }}" class="btn btn-primary mb-2">Criar Tarefa</a>
         <table class="table table-dark table-striped">
             <tr>
                 <th>Nome</th>

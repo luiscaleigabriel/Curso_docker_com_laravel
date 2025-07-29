@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
-    Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
     Route::get('/register', [UserController::class, 'index'])->name('user.index');
     Route::post('/register', [UserController::class, 'store'])->name('user.store');
 });
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 
 
@@ -28,5 +29,6 @@ Route::middleware(['guest'])->group(function () {
  */
 Route::middleware(['auth'])->group(function () {
     Route::get('/tasks', [TaskController::class, 'index'])->name('task.index');
+    Route::get('/tasks/create', [TaskController::class, 'create'])->name('task.create');
 });
 

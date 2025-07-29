@@ -23,7 +23,7 @@ class AuthController extends Controller
             return redirect()->route('task.index');
         }
 
-        return back()->with('error', 'Ocorreu um erro ao fazer login. Verifique a sua conexão a internet!');
+        return back()->with('error', 'Credencias incorretas!');
     }
 
     public function logout(Request $request)
