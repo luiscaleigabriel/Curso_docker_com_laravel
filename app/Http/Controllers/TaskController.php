@@ -16,7 +16,11 @@ class TaskController extends Controller
     {
         // $tasks = Task::where('user_id', Auth::user()->id);
         $user = User::find(Auth::user()->id);
-        $tasks = $user->tasks;
+        $tasks = $user->tasks()->orderByRaw("FIELD(status, 'pendente', 'concluido')")
+            ->orderByRaw("FIELD(priority, 'a', 'm', 'b')")
+            ->orderBy('created_at', 'desc')
+            ->get();
+            
         return view('tasks.index', compact('tasks'));
     }
 
