@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -36,9 +37,22 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        //
+        $data = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'priority' => $request->priority,
+            'status' => $request->status,
+            'user_id' => Auth::user()->id,
+        ];
+        $created = Task::create($data);
+
+        if ($created) {
+            return redirect()->route('task.index')->with('success', 'Tarefa cadastrada com sucesso!');
+        }
+
+        return back()->with('error', 'Ocorreu um erro ao tentar cadastrar a tarefa. Por favor tente novamente!');
     }
 
     /**
@@ -70,6 +84,9 @@ class TaskController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $task = Task::find($id);
+        $task->delete();
+
+        return redirect()->route('task.index')->with('success', 'Tarefa excluída com sucesso!');
     }
 }

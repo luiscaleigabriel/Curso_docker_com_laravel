@@ -11,8 +11,27 @@ class Task extends Model
         'description',
         'status',
         'priority',
-        'id_user',
+        'user_id',
     ];
+
+    public function getPriorityLabelAttribute()
+    {
+        return match ($this->priority) {
+            'a' => 'Alta',
+            'm' => 'Média',
+            'b' => 'Baixa',
+            default => 'Desconhecida'
+        };
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return match ($this->status) {
+            'd' => 'Concluida',
+            'p' => 'Pendente',
+            default => 'Pendente'
+        };
+    }
 
     public function user()
     {
