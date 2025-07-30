@@ -68,15 +68,30 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $task = Task::find($id);
+
+        if($task) {
+            return view('tasks.edit', compact('task'));
+        }
+
+        return back()->with('error', 'Tarefa não encontrada!');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreTaskRequest $request, string $id)
     {
-        //
+        $data = $request->except(['_token', '_método']);
+
+        $task = Task::find($id);
+
+        if($task) {
+            $task->update($data);
+            return redirect()->route('task.index')->with('success', 'Dados da tarefa editados com sucesso!');
+        }
+
+        return back()->with('error', 'Ocorreu um erro ao editar a tarefa. Por favor tente mais tarde!');
     }
 
     /**

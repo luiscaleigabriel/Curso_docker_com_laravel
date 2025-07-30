@@ -19,15 +19,16 @@
         @endif
         <div class="card shadow rounded">
             <div class="card-header bg-primary text-white">
-                <h4 class="mb-0">Cadastrar Nova Tarefa</h4>
+                <h4 class="mb-0">Editar Tarefa</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('task.store') }}" method="POST">
+                <form action="{{ route('task.update', $task->id) }}" method="POST">
                     @csrf
+                    @method('put')
 
                     @include('tasks.partials.form')
 
-                    <button type="submit" class="btn btn-success">Salvar Tarefa</button>
+                    <button type="submit" class="btn btn-success">Editar Tarefa</button>
                     <a href="{{ route('task.index') }}" class="btn btn-secondary">Cancelar</a>
                 </form>
             </div>

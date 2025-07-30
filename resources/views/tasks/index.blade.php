@@ -26,7 +26,8 @@
                     <td>{{$task->description}}</td>
                     <td>{{$task->status_label}}</td>
                     <td>{{$task->priority_label}}</td>
-                    <td>
+                    <td class="d-flex gap-2">
+                        <a href="{{ route('task.edit', $task->id) }}" class="btn btn-success">Editar</a>
                         <form action="{{ route('task.destroy', $task->id) }}" method="post">
                             @csrf
                             @method('delete')
